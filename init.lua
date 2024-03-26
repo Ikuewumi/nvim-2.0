@@ -46,11 +46,11 @@ vim.g.maplocalleader = ' '
 
 
 -- User Custom Configuration
-vim.opt.smarttab = true
-vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.autoindent = true
+vim.opt.expandtab = true
 
 
 -- [[ Install `lazy.nvim` plugin manager ]]
@@ -210,20 +210,6 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    lazy = false,
-    config = function()
-      require('onedark').setup {
-        -- Set a style preset. 'dark' is default.
-        style = 'dark', -- dark, darker, cool, deep, warm, warmer, light
-      }
-      require('onedark').load()
-    end,
-  },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -293,7 +279,13 @@ require('lazy').setup({
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
   --
-  'numToStr/FTerm.nvim',
+	{
+	'loctvl842/monokai-pro.nvim',
+  	config = function()
+    		require("monokai-pro").setup()
+  	end
+	},
+
 }, {})
 
 -- [[ Setting options ]]
@@ -700,8 +692,8 @@ cmp.setup {
 
 vim.keymap.set('n', '<C-b>', [[:Explore<CR>]], {desc = 'Open File Explorer'})
 vim.keymap.set('n', '<C-d>', [[:bd<CR>]], {desc = 'Close a Buffer'})
-vim.keymap.set('n', '<Tab>', [[:tabNext<CR>]], {desc = 'To Next Tab'})
+vim.keymap.set('n', '<Tab>', [[:tabn<CR>]], {desc = 'To Next Tab'})
 vim.keymap.set('n', '<S-Tab>', [[:tabprevious<CR>]], {desc = 'To Previous Tab'})
 vim.keymap.set('n', '<C-n>', [[:tabnew<CR>]], {desc = 'Open a New Tab'})
 
-
+vim.cmd([[colorscheme monokai-pro-default]])
