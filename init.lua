@@ -697,3 +697,8 @@ vim.keymap.set('n', '<S-Tab>', [[:tabprevious<CR>]], {desc = 'To Previous Tab'})
 vim.keymap.set('n', '<C-n>', [[:tabnew<CR>]], {desc = 'Open a New Tab'})
 
 vim.cmd([[colorscheme monokai-pro-default]])
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
+  command = 'silent! EslintFixAll',
+  group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
+})
